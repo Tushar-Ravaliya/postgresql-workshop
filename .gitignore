@@ -1,0 +1,69 @@
+# Node / JavaScript
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Environment files
+.env
+.env.local
+.env.*.local
+.env.test
+
+# Logs
+.logs
+*.log
+log/
+logs/
+*.log.*
+
+# Runtime data
+pids/
+*.pid
+*.pid.lock
+*.seed
+
+# Build / output
+dist/
+build/
+out/
+.next/
+.parcel-cache/
+.cache/
+coverage/
+
+# OS generated
+.DS_Store
+Thumbs.db
+
+# Editor/IDE
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# TypeScript
+*.tsbuildinfo
+
+# Misc
+.env.local
+.env.development.local
+.env.production.local
+.history/
+.turbo/
+node-repl-history
+
+# React Native
+android/
+ios/
+
+# Supabase local files
+supabase/
+
