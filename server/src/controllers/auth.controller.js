@@ -51,6 +51,8 @@ const login = async (req, res) => {
       { expiresIn: "1d" },
     );
 
+    res.cookie("token", token);
+
     res.json({ token, user });
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -71,7 +73,6 @@ const deleteUser = async (req, res) => {
 const updateUser = async (req, res) => {
   try {
     const { id, updatedData } = req.body;
-    console.log(id, updatedData);
 
     const updatedUser = await updateUserdb(id, updatedData);
     res.json({ message: "User updated successfully", user: updatedUser });
