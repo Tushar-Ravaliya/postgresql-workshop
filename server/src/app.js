@@ -1,32 +1,16 @@
 import express from "express";
-import supabase from "./db/supabaseClient.js";
+import cors from "cors";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+import authRoutes from "./routes/auth.route.js";
 
 const app = express();
+
+app.use(cors());
 app.use(express.json());
 
-app.get("/users", async (req, res) => {
-  const { data, error } = await supabase.from("Users").select("*");
-
-  if (error) {
-    return res.status(500).json({ error: error.message });
-  }
-
-  res.json(data);
-});
-
-app.post("/users", async (req, res) => {
-  const { name, email } = req.body;
-
-  const { data, error } = await supabase
-    .from("Users")
-    .insert([{ name, email }])
-    .select();
-
-  if (error) {
-    return res.status(500).json({ error: error.message });
-  }
-
-  res.json(data);
-});
+app.use("/api/auth", authRoutes);
 
 export default app;
