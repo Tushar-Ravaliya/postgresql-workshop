@@ -1,6 +1,11 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { findUserByEmail, createUser } from "../models/userModel.js";
+import {
+  findUserByEmail,
+  createUser,
+  updateUserdb,
+  deleteUserdb,
+} from "../models/userModel.js";
 
 // REGISTER
 const register = async (req, res) => {
@@ -52,4 +57,27 @@ const login = async (req, res) => {
   }
 };
 
-export { register, login };
+const deleteUser = async (req, res) => {
+  try {
+    const { id } = req.body;
+
+    const deletedUser = await deleteUserdb(id);
+    res.json({ message: "User deleted successfully", user: deletedUser });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const updateUser = async (req, res) => {
+  try {
+    const { id, updatedData } = req.body;
+    console.log(id, updatedData);
+
+    const updatedUser = await updateUserdb(id, updatedData);
+    res.json({ message: "User updated successfully", user: updatedUser });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+export { register, login, deleteUser, updateUser };

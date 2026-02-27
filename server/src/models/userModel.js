@@ -22,4 +22,26 @@ const createUser = async (userData) => {
   return data;
 };
 
-export { findUserByEmail, createUser };
+const deleteUserdb = async (userId) => {
+  const { data, error } = await supabase
+    .from("Users")
+    .delete()
+    .eq("id", userId);
+
+  if (error) throw error;
+  return data;
+};
+
+const updateUserdb = async (userId, updatedData) => {
+  const { data, error } = await supabase
+    .from("Users")
+    .update(updatedData)
+    .eq("id", userId)
+    .select()
+    .single();
+
+  if (error) throw error;
+  return data;
+};
+
+export { findUserByEmail, createUser, deleteUserdb, updateUserdb };
